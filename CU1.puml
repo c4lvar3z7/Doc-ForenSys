@@ -1,0 +1,26 @@
+@startuml
+left to right direction
+
+actor :Administrador: as Admin
+actor :Perito: as Perito
+actor :Coordinador General: as Coordinador
+
+package "1. Gestión de Acceso y Perfil" {
+    usecase "CU-1.01: Iniciar Sesión\n«navigation»" as CU_1_01
+    usecase "CU-1.02: Cerrar Sesión" as CU_1_02
+    usecase "CU-1.03: Modificar Contraseña" as CU_1_03
+    usecase "CU-1.04: Gestión de Perfiles\n(Alta/Modif/Baja/Listar)" as CU_1_04
+}
+
+Perito --> CU_1_01
+Perito --> CU_1_02
+Perito --> CU_1_03
+
+Coordinador --> CU_1_01
+Coordinador --> CU_1_02
+Coordinador --> CU_1_03
+
+Admin --> CU_1_01
+Admin --> CU_1_02
+Admin --> CU_1_04
+@endum

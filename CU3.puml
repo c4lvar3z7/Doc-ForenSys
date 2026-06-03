@@ -1,0 +1,25 @@
+@startuml
+left to right direction
+
+actor :Perito: as Perito
+actor :Coordinador General: as Coordinador
+
+package "3. Operativa de Pedidos de Extracción" {
+    usecase "CU-3.01.01: Registrar Causa Judicial" as CU_3_01_01
+    usecase "CU-3.01.04: Listar Causas\n«navigation»" as CU_3_01_04
+    usecase "CU-3.02.01: Registrar Oficio" as CU_3_02_01
+    usecase "CU-3.02.04: Listar Oficios / Pedidos\n«navigation»" as CU_3_02_04
+    usecase "CU-3.03.01: Registrar Apertura de Contenedor" as CU_3_03_01
+    
+    CU_3_02_01 <.. CU_3_03_01 : <<extend>>
+}
+
+Perito --> CU_3_01_01
+Perito --> CU_3_01_04
+Perito --> CU_3_02_01
+Perito --> CU_3_02_04
+'Perito --> CU_3_03_01
+
+Coordinador --> CU_3_01_04
+Coordinador --> CU_3_02_04
+@endum

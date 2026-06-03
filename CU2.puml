@@ -1,0 +1,22 @@
+@startuml
+left to right direction
+
+actor :Administrador: as Admin
+
+package "2. Gestión de Catálogos (Paramétricos)" {
+    usecase "CU-2.01: ABM Dependencias Judiciales" as CU_2_01
+    usecase "CU-2.02: ABM Fiscales" as CU_2_02
+    usecase "CU-2.03: ABM Tipos de Delito" as CU_2_03
+    usecase "CU-2.04: ABM Tipos de Dispositivo" as CU_2_04
+    usecase "CU-2.04.05: Construir Estructura\nFormulario Dinámico (JSON)" as CU_2_04_05
+    usecase "CU-2.05: ABM Prioridades" as CU_2_05
+    
+    CU_2_04 <.. CU_2_04_05 : <<include>>
+}
+
+Admin --> CU_2_01
+Admin --> CU_2_02
+Admin --> CU_2_03
+Admin --> CU_2_04
+Admin --> CU_2_05
+@endum
