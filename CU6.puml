@@ -1,0 +1,18 @@
+@startuml
+left to right direction
+
+actor :Perito: as Perito
+actor :Coordinador General: as Coordinador
+
+package "6. Reportes y Supervisión (Coordinador General)" {
+    usecase "CU-6.01: Visualizar Dashboard Global de Gestión" as CU_6_01 <<navigation>>
+    usecase "CU-6.02: Generar Resumen Técnico para Informe\n(Exportación Perito)" as CU_6_02 <<process>>
+    usecase "CU-6.03: Generar Estadística de Dispositivos\npor Tipo y Año" as CU_6_03 <<navigation>>
+    usecase "CU-6.04: Generar Estadística de Causas\npor Tipo de Delito" as CU_6_04 <<navigation>>
+}
+
+Coordinador --> CU_6_01
+Perito --> CU_6_02
+Coordinador --> CU_6_03
+Coordinador --> CU_6_04
+@endum

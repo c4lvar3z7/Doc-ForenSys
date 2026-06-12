@@ -1,0 +1,23 @@
+@startuml
+left to right direction
+
+actor :Perito: as Perito
+actor :Coordinador General: as Coordinador
+
+package "Gestión de Causas Judiciales" {
+    usecase "CU-3.01.01: Registrar Nueva Causa Judicial" as CU_3_01_01 <<process>>
+    usecase "CU-3.01.02: Modificar Datos de Causa Judicial" as CU_3_01_02 <<process>>
+    usecase "CU-3.01.03: Consultar Detalle de Causa Judicial" as CU_3_01_03 <<navigation>>
+    usecase "CU-3.01.04: Listar Causas Judiciales" as CU_3_01_04 <<navigation>>
+    usecase "CU-3.01.05: Deshabilitar Causa Judicial" as CU_3_01_05 <<process>>
+}
+
+Perito --> CU_3_01_01
+Perito --> CU_3_01_02
+Perito --> CU_3_01_03
+Perito --> CU_3_01_04
+Perito --> CU_3_01_05
+
+Coordinador --> CU_3_01_03
+Coordinador --> CU_3_01_04
+@endum

@@ -1,5 +1,4 @@
 @startuml
-
 left to right direction
 
 actor :Sistema: as Sistema
@@ -7,8 +6,8 @@ actor :Perito: as Perito
 actor :Coordinador General: as Coordinador
 
 package "5. Trazabilidad y Cadena de Custodia" {
-    usecase "CU-5.01: Registrar Evento de Trazabilidad" as CU_5_01
-    usecase "CU-5.02: Consultar Historial de Auditoría\n«navigation»" as CU_5_02
+    usecase "CU-5.01: Registrar Evento de Trazabilidad" as CU_5_01 <<process>>
+    usecase "CU-5.02: Consultar Historial de Trazabilidad\nde un Oficio" as CU_5_02 <<navigation>>
 }
 
 Sistema --> CU_5_01
@@ -19,5 +18,4 @@ Coordinador --> CU_5_02
 note bottom of CU_5_01
   Invocado por el backend tras cada acción relevante.
 end note
-
 @endum

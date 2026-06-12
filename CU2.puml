@@ -3,20 +3,37 @@ left to right direction
 
 actor :Administrador: as Admin
 
-package "2. Gestión de Catálogos (Paramétricos)" {
-    usecase "CU-2.01: ABM Dependencias Judiciales" as CU_2_01
-    usecase "CU-2.02: ABM Fiscales" as CU_2_02
-    usecase "CU-2.03: ABM Tipos de Delito" as CU_2_03
-    usecase "CU-2.04: ABM Tipos de Dispositivo" as CU_2_04
-    usecase "CU-2.04.05: Construir Estructura\nFormulario Dinámico (JSON)" as CU_2_04_05
-    usecase "CU-2.05: ABM Prioridades" as CU_2_05
+package "2. Gestión de Catálogos (ABM para los datos parametrizados)" {
     
-    CU_2_04 <.. CU_2_04_05 : <<include>>
+    usecase "CU-2.01: Gestión de Dependencias Judiciales" as CU_2_01 <<process>>
+    usecase "CU-2.02: Gestión de Fiscales" as CU_2_02 <<process>>
+    usecase "CU-2.03: Gestión de Tipos de Delito" as CU_2_03 <<process>>
+    
+    package "Gestión de Dispositivos" {
+        usecase "CU-2.04.01: Registrar Nuevo Tipo de Dispositivo" as CU_2_04_01 <<process>>
+        usecase "CU-2.04.02: Modificar Tipo de Dispositivo" as CU_2_04_02 <<process>>
+        usecase "CU-2.04.03: Listar Tipos de Dispositivo" as CU_2_04_03 <<navigation>>
+        usecase "CU-2.04.04: Deshabilitar Dispositivo" as CU_2_04_04 <<process>>
+        usecase "CU-2.04.05: Construir Formulario\nde Tipo de Dispositivo" as CU_2_04_05 <<process>>
+        
+        CU_2_04_01 <.. CU_2_04_05 : <<include>>
+    }
+    
+    usecase "CU-2.05: Gestión de prioridades" as CU_2_05 <<process>>
+    usecase "CU-2.06: Gestión de Estados Procesales" as CU_2_06 <<process>>
+    usecase "CU-2.07: Gestión de Estados de dispositivo" as CU_2_07 <<process>>
 }
 
 Admin --> CU_2_01
 Admin --> CU_2_02
 Admin --> CU_2_03
-Admin --> CU_2_04
+
+Admin --> CU_2_04_01
+Admin --> CU_2_04_02
+Admin --> CU_2_04_03
+Admin --> CU_2_04_04
+
 Admin --> CU_2_05
+Admin --> CU_2_06
+Admin --> CU_2_07
 @endum

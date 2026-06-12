@@ -2,18 +2,25 @@
 left to right direction
 
 actor :Perito: as Perito
+actor :Coordinador General: as Coordinador
 
 package "4. Gestión de Dispositivos de Evidencia" {
-    usecase "CU-4.01: Registrar Dispositivo" as CU_4_01
-    usecase "CU-4.03: Consultar Detalle de Dispositivo\n«navigation»" as CU_4_03
-    usecase "CU-4.04: Actualizar Ubicación Física" as CU_4_04
-    usecase "CU-4.05: Cargar Fotografías de Evidencia" as CU_4_05
-    usecase "CU-4.06: Registrar Observación Técnica \n en Bitacora de Dispositivo" as CU_4_06
+    usecase "CU-4.01: Registrar Dispositivo" as CU_4_01 <<process>>
+    usecase "CU-4.02: Modificar Datos del Dispositivo" as CU_4_02 <<process>>
+    usecase "CU-4.03: Consultar Detalle de Dispositivo" as CU_4_03 <<navigation>>
+    usecase "CU-4.04: Actualizar Ubicación Física del Dispositivo" as CU_4_04 <<process>>
+    usecase "CU-4.05: Cargar fotos de dispositivo" as CU_4_05 <<process>>
+    usecase "CU-4.06: Cargar Observación Técnica en Registro\nde Observaciones de Dispositivo" as CU_4_06 <<process>>
+    usecase "CU-4.07: Deshabilitar Dispositivo (Baja Lógica)" as CU_4_07 <<process>>
 }
 
 Perito --> CU_4_01
+Perito --> CU_4_02
 Perito --> CU_4_03
 Perito --> CU_4_04
 Perito --> CU_4_05
 Perito --> CU_4_06
+Perito --> CU_4_07
+
+Coordinador --> CU_4_03
 @endum

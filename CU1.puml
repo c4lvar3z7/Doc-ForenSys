@@ -6,10 +6,20 @@ actor :Perito: as Perito
 actor :Coordinador General: as Coordinador
 
 package "1. Gestión de Acceso y Perfil" {
-    usecase "CU-1.01: Iniciar Sesión\n«navigation»" as CU_1_01
-    usecase "CU-1.02: Cerrar Sesión" as CU_1_02
-    usecase "CU-1.03: Modificar Contraseña" as CU_1_03
-    usecase "CU-1.04: Gestión de Perfiles\n(Alta/Modif/Baja/Listar)" as CU_1_04
+    usecase "CU-1.01: Iniciar Sesión" as CU_1_01 <<process>>
+    usecase "CU-1.02: Cerrar Sesión" as CU_1_02 <<process>>
+    usecase "CU-1.03: Modificar Contraseña de Usuario" as CU_1_03 <<process>>
+    
+    usecase "CU-1.04: Gestión de perfiles (Administrador)" as CU_1_04 <<process>>
+    usecase "CU-1.04.01: Crear perfil" as CU_1_04_01 <<process>>
+    usecase "CU-1.04.02: Modificar perfil" as CU_1_04_02 <<process>>
+    usecase "CU-1.04.03: Eliminar perfil" as CU_1_04_03 <<process>>
+    usecase "CU-1.04.04: Listar perfiles" as CU_1_04_04 <<navigation>>
+    
+    CU_1_04 ..> CU_1_04_01 : <<extends>>
+    CU_1_04 ..> CU_1_04_02 : <<extends>>
+    CU_1_04 ..> CU_1_04_03 : <<extends>>
+    CU_1_04 ..> CU_1_04_04 : <<extends>>
 }
 
 Perito --> CU_1_01
