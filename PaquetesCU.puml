@@ -1,37 +1,43 @@
 @startuml
 !theme plain
+left to right direction
+
+actor "Administrador" as Admin
+actor "Coordinador General" as Coordinador
+
 frame "ForenSys" {
-    package "1. Gestión de Acceso y Perfil" as P1 {
-    }
-    
-    package "2. Gestión de Catálogos (ABM para los datos parametrizados)" as P2 {
-        package "Gestión de Dispositivos" as P2_1 {
-        }
-    }
-    
-    package "3. Operativa de Pedidos de Extracción" as P3 {
-        package "Gestión de Causas Judiciales" as P3_1 {
-        }
-        package "Gestión de Oficios" as P3_2 {
-        }
-        package "Gestión de Aperturas" as P3_3 {
-        }
-    }
-    
-    package "4. Gestión de Dispositivos de Evidencia" as P4 {
-    }
-    
-    package "5. Trazabilidad y Cadena de Custodia" as P5 {
-    }
-    
-    package "6. Reportes y Supervisión (Coordinador General)" as P6 {
-    }
-    
-    ' Invisible links to organize the layout into a 2x3 grid
-    P1 -[hidden]right- P2
-    P1 -[hidden]down- P3
-    P3 -[hidden]right- P4
-    P3 -[hidden]down- P5
-    P5 -[hidden]right- P6
+
+    package "Gestión de Catálogos\n(ABM para datos parametrizados)" as P2
+
+    package "Gestión de Acceso y Perfil" as P1
+
+    package "Trazabilidad y Cadena de Custodia" as P5
+
+    package "Operativa de Pedidos de Extracción" as P3
+
+    package "Gestión de Dispositivos de Evidencia" as P4
+
+    package "Reportes y Supervisión\n(Coordinador General)" as P6
 }
-@endum
+
+actor "Perito" as Perito
+
+P6 -[hidden]-> Perito
+
+Admin --> P1
+Admin --> P2
+Admin --> P5
+
+Coordinador --> P1
+Coordinador --> P3
+Coordinador --> P4
+Coordinador --> P5
+Coordinador --> P6
+
+P1 <-- Perito
+P3 <-- Perito
+P4 <-- Perito
+P5 <-- Perito
+P6 <-- Perito
+
+@enduml

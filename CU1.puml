@@ -2,35 +2,52 @@
 left to right direction
 
 actor :Administrador: as Admin
-actor :Perito: as Perito
 actor :Coordinador General: as Coordinador
+actor :Perito: as Perito
 
 package "1. Gestión de Acceso y Perfil" {
-    usecase "CU-1.01: Iniciar Sesión" as CU_1_01 <<process>>
-    usecase "CU-1.02: Cerrar Sesión" as CU_1_02 <<process>>
-    usecase "CU-1.03: Modificar Contraseña de Usuario" as CU_1_03 <<process>>
-    
+
+    together {
+        usecase "CU-1.01: Iniciar Sesión" as CU_1_01 <<process>>
+        usecase "CU-1.02: Cerrar Sesión" as CU_1_02 <<process>>
+        usecase "CU-1.03: Modificar Contraseña de Usuario" as CU_1_03 <<process>>
+    }
+
     usecase "CU-1.04: Gestión de perfiles (Administrador)" as CU_1_04 <<process>>
+
     usecase "CU-1.04.01: Crear perfil" as CU_1_04_01 <<process>>
     usecase "CU-1.04.02: Modificar perfil" as CU_1_04_02 <<process>>
     usecase "CU-1.04.03: Eliminar perfil" as CU_1_04_03 <<process>>
     usecase "CU-1.04.04: Listar perfiles" as CU_1_04_04 <<navigation>>
-    
+
+    ' Fuerza CU_1_04 debajo de los otros CU
+    ' CU_1_03 -[hidden]up-> CU_1_04
+    ' CU_1_02 -[hidden]-> CU_1_03
+    'CU_1_04 -[hidden]down-> CU_1_02
+
     CU_1_04 ..> CU_1_04_01 : <<extends>>
     CU_1_04 ..> CU_1_04_02 : <<extends>>
     CU_1_04 ..> CU_1_04_03 : <<extends>>
     CU_1_04 ..> CU_1_04_04 : <<extends>>
 }
 
-Perito --> CU_1_01
-Perito --> CU_1_02
-Perito --> CU_1_03
+'Perito --> CU_1_01
+'Perito --> CU_1_02
+'Perito --> CU_1_03
+
+CU_1_01 <-- Perito 
+CU_1_02 <-- Perito 
+CU_1_03 <-- Perito 
 
 Coordinador --> CU_1_01
 Coordinador --> CU_1_02
 Coordinador --> CU_1_03
 
-Admin --> CU_1_01
-Admin --> CU_1_02
-Admin --> CU_1_04
-@endum
+'CU_1_01 <-- Admin 
+'CU_1_02 <-- Admin 
+'CU_1_04 <-- Admin 
+
+Admin --> CU_1_01 
+Admin --> CU_1_02 
+Admin --> CU_1_04 
+@enduml
